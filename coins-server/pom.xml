@@ -1,0 +1,71 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>coins-server</artifactId>
+  <name>coins-server</name>
+  <description>Web Service REST</description>
+  <packaging>war</packaging>
+  <parent>
+    <groupId>com.mig.coins</groupId>
+    <artifactId>coins-parent</artifactId>
+    <version>migCoins-2.1.0.0</version>
+  </parent>
+  <dependencies>
+  	<!-- Mis proyectos -->
+  	<dependency>
+  		<groupId>com.mig.coins</groupId>
+  		<artifactId>coins-main</artifactId>
+  		<version>migCoins-2.1.0.0</version>
+  	</dependency>
+  	<!--  Jersey REST Services -->
+  	<dependency>
+  		<groupId>org.glassfish.jersey.containers</groupId>
+  		<artifactId>jersey-container-servlet</artifactId>
+  		<version>2.6</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.glassfish.jersey.core</groupId>
+  		<artifactId>jersey-server</artifactId>
+  		<version>2.6</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.glassfish.jersey.media</groupId>
+  		<artifactId>jersey-media-multipart</artifactId>
+  		<version>2.6</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.glassfish.jersey.bundles</groupId>
+  		<artifactId>jaxrs-ri</artifactId>
+  		<version>2.6</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.glassfish.jersey.media</groupId>
+  		<artifactId>jersey-media-json-jackson</artifactId>
+  		<version>2.4.1</version>
+  	</dependency>
+  	<!-- JSON object -->
+  	<dependency>
+  		<groupId>org.json</groupId>
+  		<artifactId>json</artifactId>
+  		<version>20080701</version>
+  	</dependency>
+  	<!--  JSON - Java -->
+    <dependency>
+        <groupId>net.sf.flexjson</groupId>
+        <artifactId>flexjson</artifactId>
+        <version>3.3</version>
+    </dependency>
+	<!-- 
+	<dependency>
+    	<groupId>commons-collections</groupId>
+    	<artifactId>commons-collections</artifactId>
+    	<version>3.2.1</version>
+	</dependency>
+	<dependency>
+    	<groupId>commons-codec</groupId>
+	    <artifactId>commons-codec</artifactId>
+    	<version>1.6</version>
+	</dependency>
+	-->
+  </dependencies>
+</project>

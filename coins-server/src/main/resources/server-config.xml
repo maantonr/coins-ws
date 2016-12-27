@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <apiImpl>
+    <CatalogService>com.mig.coins.main.catalog.CatalogImpl</CatalogService> <!-- Catálogo -->
+    <collection></collection> <!-- Colecciones -->
+    <user></user> <!-- Usuarios -->
+    <entry></entry> <!-- Apuntes contables -->
+    <purchase></purchase> <!-- Compras -->
+    <AdminisService>com.mig.coins.main.adm.AdminisImpl</AdminisService> <!-- Administración: estados, divisas, paises  -->
+  </apiImpl>
+</configuration>
