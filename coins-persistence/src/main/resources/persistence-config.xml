@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <dummy>true</dummy>
+
+  <!-- Datasource -->
+  <datasource>
+  	<driver>com.mysql.jdbc.Driver</driver>
+  	<url>jdbc:mysql://localhost/test</url>
+  	<user>usuario</user>
+  	<password>contraseña</password>
+  	<minIdle>5</minIdle>
+  	<maxIdle>20</maxIdle>
+  	<maxOpenStatements>180</maxOpenStatements>
+  </datasource>
+  
+  <!-- DAOs implementations -->
+  <daos>
+  	<pais>com.mig.coins.db.dao.mysql.PaisDAOImpl</pais>
+  	<divisa>com.mig.coins.db.dao.mysql.DivisaDAOImpl</divisa>
+  </daos>
+</configuration>
