@@ -10,15 +10,11 @@ import org.glassfish.jersey.server.ResourceConfig;
 //import org.glassfish.jersey.server.ServerProperties;
 
 import com.mig.coins.server.base.Constants.PackagesIntercept;
+import com.mig.coins.server.base.error.AppExceptionMapper;
+import com.mig.coins.server.base.error.NotFoundExceptionMapper;
+import com.mig.coins.server.base.error.UncheckedExceptionMapper;
 import com.mig.coins.server.base.intercept.CoinsInterceptionBinder;
 import com.mig.coins.server.base.intercept.SessionRequestFilter;
-
-//import com.indracompany.incms.ss.base.errorhandling.AppExceptionMapper;
-//import com.indracompany.incms.ss.base.errorhandling.NotFoundExceptionMapper;
-//import com.indracompany.incms.ss.base.errorhandling.UncheckedExceptionMapper;
-//import com.indracompany.incms.ss.base.intercept.CorsResponseFilter;
-//import com.indracompany.incms.ss.base.intercept.SsInterceptionBinder;
-//import com.indracompany.incms.ss.base.intercept.SessionRequestFilter;
 
 /**
  * Clase para el registro jersey/jaxr
@@ -42,10 +38,10 @@ public class Application extends ResourceConfig {
 //        register(CorsResponseFilter.class);
   
         // register exception mappers
-        // PDTE Tratamiento de excepctions
-//     	register(AppExceptionMapper.class);
-//     	register(UncheckedExceptionMapper.class);
-//     	register(NotFoundExceptionMapper.class);
+     	register(AppExceptionMapper.class);
+     	register(UncheckedExceptionMapper.class);
+     	register(NotFoundExceptionMapper.class);
+     	
 		// register features
 //		register(JacksonFeature.class);//necesario para la conversión de exception a json
 		

@@ -18,8 +18,9 @@ import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
 import javax.ws.rs.core.Context;
 
-import com.mig.coins.main.base.Session;
-import com.mig.coins.main.base.SessionManager;
+import com.mig.coins.util.session.Session;
+import com.mig.coins.util.session.SessionException;
+import com.mig.coins.util.session.SessionManager;
 
 //import com.indracompany.incms.ss.main.SsConstants.HeaderControl;
 //import com.indracompany.incms.ss.main.SsConstants.HeadersSession;
@@ -44,9 +45,15 @@ public class SessionRequestFilter implements ContainerRequestFilter {
 		
 		Thread currentThread=Thread.currentThread();
 		SessionManager manager = SessionManager.getInstance();
-		Session sess = manager.setSessionInCurrentThread(loc, "127.0.0.1", currentThread.getName());
+		Session sess;
+		try {
+			sess = manager.setSessionInCurrentThread(loc, "127.0.0.1", currentThread.getName());
+			System.out.println("Construida la sesion: " + sess.toString());
+		} catch (SessionException e) {
+			// PDTE - Que hago con esto?
+			e.printStackTrace();
+		}
 		
-		System.out.println("Construida la sesion: " + sess.toString());
 	}
 }
 

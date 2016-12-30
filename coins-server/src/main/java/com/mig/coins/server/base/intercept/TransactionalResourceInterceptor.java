@@ -13,8 +13,8 @@ import org.apache.commons.logging.LogFactory;
 
 import com.mig.coins.db.base.CoinsMockConnection;
 import com.mig.coins.db.base.Pool;
-import com.mig.coins.main.base.Session;
-import com.mig.coins.main.base.SessionManager;
+import com.mig.coins.util.session.Session;
+import com.mig.coins.util.session.SessionManager;
 
 //PDTE Documentar
 @Priority(Priorities.USER)

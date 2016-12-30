@@ -1,4 +1,4 @@
-package com.mig.coins.main.base;
+package com.mig.coins.util.session;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -62,20 +62,17 @@ public class SessionManager {
 		}
 	}
 
-	// PDTE Exceptions
-	public Session getSessionInCurrentThread()
-	//			throws SessionSetupNotSetException
+	public Session getSessionInCurrentThread() throws SessionException
 	{
 		synchronized (this)
 		{
 			final Thread currentThread=Thread.currentThread();
-			final Session sessionSetup=this.mapSessionByThread.get(currentThread);
-			if (sessionSetup == null)
+			final Session session=this.mapSessionByThread.get(currentThread);
+			if (session == null)
 			{
-				// PDTE Lanzar la exception
-				//					throw new SessionSetupNotSetException(currentThread);
+				throw new SessionException(currentThread, "No existe sesion");
 			}
-			return sessionSetup;
+			return session;
 		}
 	}
 
@@ -83,9 +80,9 @@ public class SessionManager {
 	 * Associates a session just created to the current thread.
 	 * 
 	 * @param session Session.
+	 * @throws SessionException 
 	 */
-	// PDTE Exceptions
-	public Session setSessionInCurrentThread(Locale locale, String ipAddress, String sessionId)
+	public Session setSessionInCurrentThread(Locale locale, String ipAddress, String sessionId) throws SessionException
 	{
 		synchronized (this)
 		{
@@ -94,7 +91,7 @@ public class SessionManager {
 			if (sessionOld != null)
 			{
 				LOG.error("Ya existe una sessión en el hilo actual: " + sessionOld.toString());
-				// PDTE No debería ocurrir si la estamos eliminando al finalizar la sessión
+				throw new SessionException(currentThread, "Ya existe una sessión en el hilo");
 			}
 
 			if (size() == MAX_SESSION)
@@ -110,23 +107,22 @@ public class SessionManager {
 		}
 	}
 
-	public void removeSessionInCurrentThread()
+	public void removeSessionInCurrentThread() throws SessionException
 	{
 		synchronized (this)
 		{
 			final Thread currentThread=Thread.currentThread();
-			final Session sessionSetup=this.mapSessionByThread.remove(currentThread);
-			if (sessionSetup != null)
+			final Session session=this.mapSessionByThread.remove(currentThread);
+			if (session != null)
 			{
 				this.notifyAll();
 				
-				final Connection conn = sessionSetup.getConnection();
+				final Connection conn = session.getConnection();
 				if (null != conn)
 				{
 					try
 					{
-						// PDTE Verificar como se cierra la conexion
-						conn.close();// El Pool se encarga de liberarla, tb hace un rollback implicitamente
+						conn.close();
 					}
 					catch (SQLException e)
 					{

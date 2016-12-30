@@ -1,11 +1,12 @@
-package com.mig.coins.main.base;
+package com.mig.coins.util.session;
 
 import java.sql.Connection;
 import java.util.Locale;
 
+// PDTE Documentar
 public class Session {
 
-	private final String sessionId;		// Identificador de la sesión. - PDTE solo sirve para mostrar la que se ha eliminado
+	private final String sessionId;		// Identificador de la sesión.
 	private final String ipAddress;		// Dirección IP de la máquina cliente.
 	private final Thread currentThread;	// Hilo en que se ejecuta la sesión.
 	private java.sql.Time currentTime;	// Última hora en la que se actualiza la sesión.
@@ -46,10 +47,9 @@ public class Session {
 		return ipAddress;
 	}
 
-	public Connection getConnection() {
+	public Connection getConnection() throws SessionException {
 		if (this.connection==null){
-			// PDTE Exception
-//			throw new ConnectionInSessionNotSetException(getCurrentThread());
+			throw new SessionException(getCurrentThread(), "No connection");
 		}
 		return this.connection;
 	}

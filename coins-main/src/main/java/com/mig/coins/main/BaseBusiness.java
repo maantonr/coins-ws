@@ -3,15 +3,16 @@ package com.mig.coins.main;
 import java.sql.Connection;
 import java.util.Locale;
 
-import com.mig.coins.main.base.Session;
-import com.mig.coins.main.base.SessionManager;
+import com.mig.coins.util.session.Session;
+import com.mig.coins.util.session.SessionException;
+import com.mig.coins.util.session.SessionManager;
 
 // PDTE Documentar
 public class BaseBusiness implements IBaseBusiness {
 
 	private final Session mySession;
 
-	public BaseBusiness() {
+	public BaseBusiness() throws SessionException {
 		mySession = SessionManager.getInstance().getSessionInCurrentThread();
 	}
 
@@ -19,7 +20,7 @@ public class BaseBusiness implements IBaseBusiness {
 		return mySession;
 	}
 
-	protected Connection getConnection() {
+	protected Connection getConnection() throws SessionException {
 		return mySession.getConnection();
 	}
 

@@ -19,6 +19,7 @@ import com.mig.coins.main.adm.IAdminisBusiness;
 import com.mig.coins.server.base.helper.JsonHelper;
 import com.mig.coins.server.base.intercept.annotations.Transactional;
 import com.mig.coins.server.services.BaseService;
+import com.mig.coins.util.session.SessionException;
 
 @Path("/")
 public class AdminisService extends BaseService {
@@ -35,7 +36,7 @@ public class AdminisService extends BaseService {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Transactional
 	public Response getPaises(@QueryParam("included") List<Integer> divIncluded,
-			@QueryParam("excluded") List<Integer> divExcluded) {
+			@QueryParam("excluded") List<Integer> divExcluded) throws SessionException {
 		
 		// No se deben recibir ambos filtros a la vez
 		final List<Integer> lIncluded = ((null == divIncluded) || (divIncluded.isEmpty())) 
@@ -63,7 +64,7 @@ public class AdminisService extends BaseService {
 	@Path("/paises/{idPais}/")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Transactional
-	public Response getPais(@PathParam("idPais") Integer idPais) {
+	public Response getPais(@PathParam("idPais") Integer idPais) throws SessionException {
 		
 		// No se deben recibir ambos filtros a la vez
 		if ((null == idPais) || (idPais.intValue() == 0)) {
