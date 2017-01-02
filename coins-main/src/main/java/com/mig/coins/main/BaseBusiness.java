@@ -10,21 +10,29 @@ import com.mig.coins.util.session.SessionManager;
 // PDTE Documentar
 public class BaseBusiness implements IBaseBusiness {
 
-	private final Session mySession;
+	private Session mySession;
 
-	public BaseBusiness() throws SessionException {
-		mySession = SessionManager.getInstance().getSessionInCurrentThread();
+	public BaseBusiness(){
 	}
 
-	protected Session getSession() {
+	protected Session getSession() throws SessionException  {
+		if (null == mySession) {
+			mySession = SessionManager.getInstance().getSessionInCurrentThread();
+		}
 		return mySession;
 	}
 
 	protected Connection getConnection() throws SessionException {
+		if (null == mySession) {
+			mySession = SessionManager.getInstance().getSessionInCurrentThread();
+		}
 		return mySession.getConnection();
 	}
 
-	protected Locale getLocale() {
+	protected Locale getLocale() throws SessionException {
+		if (null == mySession) {
+			mySession = SessionManager.getInstance().getSessionInCurrentThread();
+		}
 		return mySession.getLocale();
 	}
 
