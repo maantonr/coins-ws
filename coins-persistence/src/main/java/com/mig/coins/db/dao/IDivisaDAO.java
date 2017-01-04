@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.mig.coins.db.entity.Divisa;
 
-public interface IDivisaDAO {
+public interface IDivisaDAO extends IDAO {
 
 	public Divisa read(Integer idDivisa);
 	public List<Divisa> getDivisas();

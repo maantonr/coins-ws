@@ -1,10 +1,11 @@
 package com.mig.coins.db.dao;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Locale;
 
 // PDTE Documentar
-public class AbstractDAOImpl implements IDAO{
+public abstract class AbstractDAOImpl implements IDAO {
 	Connection connection;
 	Locale locale;
 	
@@ -29,5 +30,5 @@ public class AbstractDAOImpl implements IDAO{
 		return locale;
 	}
 
-	
+	public abstract long count() throws SQLException;
 }

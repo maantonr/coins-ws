@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.mig.coins.db.entity.Pais;
 
-public interface IPaisDAO {
+public interface IPaisDAO extends IDAO {
 
 	public Pais read(Integer idPais);
 	public List<Pais> getPaises();

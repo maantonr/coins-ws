@@ -1,5 +1,8 @@
-package com.mig.coins.db.dao.dummy;
+package com.mig.coins.db.dao.mysql;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,9 +15,9 @@ import com.mig.coins.db.entity.Divisa;
 import com.mig.coins.db.entity.Pais;
 
 // PDTE Implementar
-public class PaisDAODummyImpl extends AbstractDAOImpl implements IDAO, IPaisDAO {
+public class PaisDAOImpl extends AbstractDAOImpl implements IDAO, IPaisDAO {
 
-	public PaisDAODummyImpl() {
+	public PaisDAOImpl() {
 		super();
 	}
 
@@ -86,7 +89,22 @@ public class PaisDAODummyImpl extends AbstractDAOImpl implements IDAO, IPaisDAO 
 	}
 
 	@Override
-	public long count() {
-		return 3;
+	public long count() throws SQLException {
+		long nPaises = 0;
+		final String sql = "SELECT count(*) FROM `paises`";
+
+		PreparedStatement stmt=null;
+		ResultSet rs = null;
+
+		stmt=getConnection().prepareStatement(sql);
+		rs = stmt.executeQuery();
+		if (rs.next()) {
+			nPaises = rs.getLong(1);
+		} 
+
+		if (rs != null) rs.close();
+		if (stmt != null) stmt.close(); 
+
+		return nPaises;
 	}
 }

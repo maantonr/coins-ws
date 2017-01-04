@@ -1,5 +1,6 @@
 package com.mig.coins.main.adm;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import com.mig.coins.db.dao.DAOFactory;
@@ -40,6 +41,17 @@ public class AdminisImpl extends BaseBusiness implements IAdminisBusiness {
 		final List<Pais> lPaises = paisDAO.getPaises();
 
 		return lPaises;
+	}
+
+	@Override
+	public Long getNumPaises() throws SessionException, SQLException {
+		// Obtenemos el DAO para recuperar la lista de paises
+		final Session session = SessionManager.getInstance().getSessionInCurrentThread();
+
+		final DAOFactory factory = DAOFactory.getInstance();
+		final IPaisDAO paisDAO = factory.getPaisDAO(session.getConnection(), session.getLocale());
+
+		return paisDAO.count();
 	}
 
 }

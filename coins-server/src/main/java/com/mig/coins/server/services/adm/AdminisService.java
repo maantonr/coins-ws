@@ -1,5 +1,6 @@
 package com.mig.coins.server.services.adm;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.websocket.server.PathParam;
@@ -76,6 +77,23 @@ public class AdminisService extends BaseService {
 		
 		// Lo mapea a una lista sencilla de paises
 		final JSONObject result = JsonHelper.beanToJsonObject(pais);
+		
+		// PDTE Generar respuesta
+		final ResponseBuilder entity=Response.status(Status.OK).entity(result.toString());
+		return entity.build();
+	}
+	
+	@GET
+	@Path("/npaises/")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Transactional
+	public Response getNumeroPaises() throws SessionException, SQLException {
+		
+		// Recuperamos los paises
+		final Long nPaises = business.getNumPaises();
+		
+		// Lo mapea a una lista sencilla de paises
+		final JSONObject result = JsonHelper.toJsonObject(nPaises, "total");
 		
 		// PDTE Generar respuesta
 		final ResponseBuilder entity=Response.status(Status.OK).entity(result.toString());

@@ -5,14 +5,14 @@
   <!-- Datasource -->
   <datasource>
   	<driver>com.mysql.jdbc.Driver</driver>
-  	<url>jdbc:mysql://localhost/test</url>
-  	<user>usuario</user>
-  	<password>contraseña</password>
+  	<url>jdbc:mysql://localhost:3306/coins</url>
+  	<user>usr_prod</user>
+  	<password>usrprod</password>
   	<minIdle>5</minIdle>
   	<maxIdle>20</maxIdle>
   	<maxOpenStatements>180</maxOpenStatements>
   </datasource>
-  
+
   <!-- DAOs implementations -->
   <daos>
   	<pais>com.mig.coins.db.dao.mysql.PaisDAOImpl</pais>

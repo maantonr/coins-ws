@@ -1,4 +1,4 @@
-package com.mig.coins.db.dao.dummy;
+package com.mig.coins.db.dao.mysql;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,9 +8,9 @@ import com.mig.coins.db.dao.IDAO;
 import com.mig.coins.db.dao.IDivisaDAO;
 import com.mig.coins.db.entity.Divisa;
 
-public class DivisaDAODummyImpl extends AbstractDAOImpl implements IDAO, IDivisaDAO {
+public class DivisaDAOImpl extends AbstractDAOImpl implements IDAO, IDivisaDAO {
 
-	public DivisaDAODummyImpl() {
+	public DivisaDAOImpl() {
 	}
 
 	@Override

@@ -15,6 +15,26 @@ import flexjson.JSONSerializer;
 
 public class JsonHelper {
 
+
+	public static JSONObject toJsonObject(Long data, String tag)
+	// PDTE Tto Exceptions
+	//			throws SystemConfigurationException
+	{
+		JSONObject jsonObject = new JSONObject();
+
+		try {
+			if (null != data){
+				JSONObject innerObject = new JSONObject();
+				innerObject.put(tag, data.toString());
+				jsonObject.put("data", innerObject);
+			}
+		} catch (JSONException  e) {
+			// PDTE Tto Exceptions
+			//				throw new SystemConfigurationException(e, e.getMessage());
+		}
+		return jsonObject;
+	}
+
 	public static <T> JSONObject beanToJsonObject(T bean)
 	// PDTE Tto Exceptions
 	//			throws SystemConfigurationException

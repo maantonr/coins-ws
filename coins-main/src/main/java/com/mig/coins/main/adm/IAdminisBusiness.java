@@ -1,5 +1,6 @@
 package com.mig.coins.main.adm;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import com.mig.coins.db.entity.Pais;
@@ -10,4 +11,5 @@ public interface IAdminisBusiness extends IBaseBusiness {
 
 	public Pais getPais(Integer idPais) throws SessionException;
 	public List<Pais> getListaPaises(List<Integer> divisasIncluidas, List<Integer> divisasExcluidas) throws SessionException;
+	public Long getNumPaises() throws SessionException, SQLException;
 }
