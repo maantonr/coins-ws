@@ -1,33 +1,31 @@
 package com.mig.coins.server.services;
 
-import org.apache.commons.configuration2.XMLConfiguration;
-import org.apache.commons.configuration2.builder.fluent.Configurations;
-import org.apache.commons.configuration2.ex.ConfigurationException;
-
 import com.mig.coins.main.IBaseBusiness;
+import com.mig.coins.server.base.ServerConfig;
 
 
-//PDTE DOC
+/**
+ * Clase padre de todos los servicios que se publicitan con WebServices
+ * 
+ * 
+ * @author maanton
+ *
+ */
 public class BaseService {
 
-	private XMLConfiguration config;
-
-	// PDTE DOC
-	protected BaseService () {
-		final Configurations configs = new Configurations();
-		try {
-			config = configs.xml("server-config.xml");
-		} catch (ConfigurationException e) {
-			// PDTE Tratamiento de exceptions
-			e.printStackTrace();
-		}
-	}
-
-	// PDTE DOC
+	/**
+	 * Devuelve una instancia de la clase Business asociada al servicio y que implementa
+	 * el API de negocio que resuelve las peticiones WebService recibidas
+	 * 
+	 * @param classz
+	 * @return 
+	 */
 	protected IBaseBusiness getServiceImpl(final Class classz) {
-		// Recupera la implementación en función del nombre de la clase Service
-		final String propertiesName = "apiImpl." + classz.getSimpleName();
-		final String className = config.getString(propertiesName);
+		
+		final String className = ServerConfig.getInstance().getServiceClassName(classz);
+		if (null == className) {
+			// PDTE Generar Exception
+		}
 
 		// Instancia la clase dinámicamente
 		IBaseBusiness businessImpl = null;
