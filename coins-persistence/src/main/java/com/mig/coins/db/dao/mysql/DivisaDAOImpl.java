@@ -10,6 +10,8 @@ import com.mig.coins.db.entity.Divisa;
 
 public class DivisaDAOImpl extends AbstractDAOImpl implements IDAO, IDivisaDAO {
 
+	public final static String COLUMNAS_DIVISA = "`paises`.id AS PAIS_ID, `paises`.pais AS PAIS_PAIS, `paises`.siglas AS PAIS_SIGLAS";
+
 	public DivisaDAOImpl() {
 	}
 

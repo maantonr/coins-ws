@@ -34,20 +34,13 @@ public class PersistenceConfig {
 			dummyMode = config.getBoolean("dummy");
 
 			// Datasource 
-			// PDTE que hacemos en modo Dummy
-			driver = config.getString("datasource.driver");
-			url = config.getString("datasource.url");
-			usr = config.getString("datasource.user");
-			pwd = config.getString("datasource.password");
-			if (config.containsKey("datasource.minIdle")) {
-				minIdle = config.getInt("datasource.minIdle");
-			}
-			if (config.containsKey("datasource.maxIdle")) {
-				maxIdle = config.getInt("datasource.maxIdle");
-			}
-			if (config.containsKey("datasource.maxOpenStatements")) {
-				maxOpenStatements = config.getInt("datasource.maxOpenStatements");
-			}
+			driver = parseStringVar(config, "datasource.driver");
+			url = parseStringVar(config, "datasource.url");
+			usr = parseStringVar(config, "datasource.user");
+			pwd = parseStringVar(config, "datasource.password");
+			minIdle = parseIntVar(config, "datasource.minIdle", "5");
+			maxIdle = parseIntVar(config, "datasource.maxIdle", "20");
+			maxOpenStatements = parseIntVar(config, "datasource.maxOpenStatements", "180");
 
 			// DAOs
 			if (dummyMode) {
@@ -57,7 +50,7 @@ public class PersistenceConfig {
 				mDAOs.put(DAO_PAIS, config.getString("daos.pais"));
 				mDAOs.put(DAO_DIVISA, config.getString("daos.divisa"));
 			}
-		} catch (ConfigurationException e) {
+		} catch (ConfigurationException | NumberFormatException e) {
 			// PDTE Tratamiento de exceptions
 			e.printStackTrace();
 		}
@@ -71,6 +64,37 @@ public class PersistenceConfig {
 		return instance;
 	}
 
+	private static String parseStringVar(XMLConfiguration config, String varName) {
+		String varValue = null;
+		
+		final String tmpValue = config.getString(varName);
+		if ((null != tmpValue) && (tmpValue.startsWith("@"))) {
+			varValue = getEnvVar(tmpValue);
+		} else {
+			varValue = tmpValue;
+		}
+		
+		return varValue;
+	}
+	
+	private static int parseIntVar(XMLConfiguration config, String varName, String defaultValue) throws NumberFormatException {
+		int varValue = 0;
+		
+		String tmpValue = config.getString(varName, defaultValue);
+		if (tmpValue.startsWith("@")) {
+			tmpValue = getEnvVar(tmpValue);
+		}
+		
+		varValue = Integer.parseInt(tmpValue);
+		return varValue;
+	}
+	
+	private static String getEnvVar(String varName)  {
+		String varValue = System.getenv(varName.substring(1));
+		
+		return varValue;
+	}
+	
 	public boolean isDummyMode() {
 		return dummyMode;
 	}

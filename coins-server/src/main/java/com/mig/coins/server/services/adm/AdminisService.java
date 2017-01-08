@@ -17,6 +17,7 @@ import org.json.JSONObject;
 
 import com.mig.coins.db.entity.Pais;
 import com.mig.coins.main.adm.IAdminisBusiness;
+import com.mig.coins.main.adm.SystemStatus;
 import com.mig.coins.server.base.helper.JsonHelper;
 import com.mig.coins.server.base.intercept.annotations.Transactional;
 import com.mig.coins.server.services.BaseService;
@@ -65,7 +66,7 @@ public class AdminisService extends BaseService {
 	@Path("/paises/{idPais}/")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Transactional
-	public Response getPais(@PathParam("idPais") Integer idPais) throws SessionException {
+	public Response getPais(@PathParam("idPais") Integer idPais) throws SessionException, SQLException {
 		
 		// No se deben recibir ambos filtros a la vez
 		if ((null == idPais) || (idPais.intValue() == 0)) {
@@ -84,16 +85,14 @@ public class AdminisService extends BaseService {
 	}
 	
 	@GET
-	@Path("/npaises/")
+	@Path("/system/")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Transactional
-	public Response getNumeroPaises() throws SessionException, SQLException {
+	public Response getSystemStatus() throws SessionException, SQLException {
 		
-		// Recuperamos los paises
-		final Long nPaises = business.getNumPaises();
+		final SystemStatus status = business.status();
 		
-		// Lo mapea a una lista sencilla de paises
-		final JSONObject result = JsonHelper.toJsonObject(nPaises, "total");
+		final JSONObject result = JsonHelper.beanToJsonObject(status);
 		
 		// PDTE Generar respuesta
 		final ResponseBuilder entity=Response.status(Status.OK).entity(result.toString());

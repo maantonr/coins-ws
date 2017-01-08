@@ -2,10 +2,17 @@
 <configuration>
   <dummy>true</dummy>
 
-  <!-- Datasource -->
+  <!-- Datos de conexión a la base de datos
+  	Si alguno de los atributos va precedido del simbolo @ se asume que se ha de usar como nombre de una
+  	variable de entorno para recuperar la información
+  
+   -->
   <datasource>
   	<driver>com.mysql.jdbc.Driver</driver>
+  	<!-- 
   	<url>jdbc:mysql://localhost:3306/coins</url>
+  	-->
+  	<url>@OPENSHIFT_EXTMYSQL_DB_URL</url>
   	<user>usr_prod</user>
   	<password>usrprod</password>
   	<minIdle>5</minIdle>
