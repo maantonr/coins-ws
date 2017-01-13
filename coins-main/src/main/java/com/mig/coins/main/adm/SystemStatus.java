@@ -1,6 +1,9 @@
 package com.mig.coins.main.adm;
 
+import java.util.List;
+
 import com.mig.coins.db.base.DbStatus;
+import com.mig.coins.main.CodeValue;
 
 public class SystemStatus {
 
@@ -12,6 +15,8 @@ public class SystemStatus {
 
 	private DbStatus dbInfo;
 
+	private List<CodeValue> lVar;
+	
 	public String getAppName() {
 		return appName;
 	}
@@ -52,6 +57,14 @@ public class SystemStatus {
 		this.dbInfo = dbInfo;
 	}
 
+	public List<CodeValue> getlVar() {
+		return lVar;
+	}
+
+	public void setlVar(List<CodeValue> lVar) {
+		this.lVar = lVar;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -65,9 +78,10 @@ public class SystemStatus {
 		builder.append(logDir);
 		builder.append(", dbInfo=");
 		builder.append(dbInfo);
+		builder.append(", lVar=");
+		builder.append(lVar);
 		builder.append("]");
 		return builder.toString();
 	}
-	
-	
+
 }

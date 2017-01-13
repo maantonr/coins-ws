@@ -29,10 +29,9 @@ public class CheckDataBase {
 				status.setStatus("OK - NumPaises=" + Long.toString(dao.count()));
 			}
 			
-			// PDTE Llevar estas variables al fichero de configuración
 			status.setDriver(config.getDriver());
-			status.setHost(System.getenv("OPENSHIFT_EXTMYSQL_DB_HOST"));
-			status.setPort(System.getenv("OPENSHIFT_EXTMYSQL_DB_PORT"));
+			status.setHost(config.getHost());
+			status.setPort(config.getPort());
 			status.setUrl(config.getUrl());
 
 		} catch (SessionException | SQLException e) {

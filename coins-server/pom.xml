@@ -18,6 +18,14 @@
   		<version>migCoins-2.1.0.0</version>
   	</dependency>
   	<!--  Jersey REST Services -->
+	<!-- 
+  	<dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>javax.servlet-api</artifactId>
+  		<version>3.0.1</version>
+		<scope>provided</scope>
+	</dependency>
+	 -->
   	<dependency>
   		<groupId>org.glassfish.jersey.containers</groupId>
   		<artifactId>jersey-container-servlet</artifactId>

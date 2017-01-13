@@ -7,7 +7,7 @@ import org.apache.commons.configuration2.XMLConfiguration;
 import org.apache.commons.configuration2.builder.fluent.Configurations;
 import org.apache.commons.configuration2.ex.ConfigurationException;
 
-import com.mig.coins.server.services.BaseService;
+import com.mig.coins.util.config.BaseConfig;
 
 /**
  * Clase Singleton para acceder al fichero de configuración de la capa servidora
@@ -15,7 +15,7 @@ import com.mig.coins.server.services.BaseService;
  * @author maanton
  *
  */
-public class ServerConfig {
+public class ServerConfig extends BaseConfig {
 
 	private static ServerConfig instance;
 

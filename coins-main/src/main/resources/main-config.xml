@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <!-- Rutas al sistema de ficheros para almacenamiento
+  	Si alguno de los atributos va precedido del simbolo @ se asume que se ha de usar como nombre de una
+  	variable de entorno para recuperar la información
+  
+   -->
+  <filesystem>
+  	<root>@OPENSHIFT_DATA_DIR</root>
+  	<pais>\Paises</pais>
+  	<log>@OPENSHIFT_LOG_DIR</log>
+  </filesystem>
+
+</configuration>
