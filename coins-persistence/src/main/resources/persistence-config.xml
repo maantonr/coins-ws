@@ -1,20 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-  <dummy>true</dummy>
+  <dummy>false</dummy>
 
   <!-- Datos de conexión a la base de datos
   	Si alguno de los atributos va precedido del simbolo @ se asume que se ha de usar como nombre de una
   	variable de entorno para recuperar la información
   
    -->
+  	<!-- 
   <datasource>
   	<driver>com.mysql.jdbc.Driver</driver>
-  	<!-- 
-  	<url>jdbc:mysql://localhost:3306/coins</url>
-  	-->
 	<host>@OPENSHIFT_EXTMYSQL_DB_HOST</host>
 	<port>@OPENSHIFT_EXTMYSQL_DB_PORT</port>
   	<url>@OPENSHIFT_EXTMYSQL_DB_URL</url>
+  	<user>usr_prod</user>
+  	<password>usrprod</password>
+  	<minIdle>5</minIdle>
+  	<maxIdle>20</maxIdle>
+  	<maxOpenStatements>180</maxOpenStatements>
+  </datasource>
+  	-->
+  <datasource>
+  	<driver>com.mysql.jdbc.Driver</driver>
+  	<url>jdbc:mysql://localhost:3306/coins</url>
+	<host>localhost</host>
+	<port>3306</port>
   	<user>usr_prod</user>
   	<password>usrprod</password>
   	<minIdle>5</minIdle>
